@@ -1,28 +1,26 @@
 <template>
-  <el-main class="editor_main">
-    <el-row :gutter="20">
-      <el-col :xl="5" :lg="5" :md="5">
-        <div class="option_wrap">
-          <div class="option_header">
-            <el-button size="mini" type="primary" @click="resetChartOptions">重置</el-button>
-          </div>
-          <el-form size="mini" label-width="100px">
-            <el-form-item label="背景色">
-              <el-color-picker v-model="backgroundColor"></el-color-picker>
-            </el-form-item>
-            <el-collapse v-model="activeNames">
+  <el-row :gutter="10">
+    <el-col :xl="5" :lg="5" :md="5">
+      <div class="option_wrap">
+        <div class="option_header">
+          <el-button size="mini" type="primary" @click="resetChartOptions">重置</el-button>
+        </div>
+        <el-form size="mini" label-width="100px">
+          <el-form-item label="背景色">
+            <el-color-picker v-model="backgroundColor"></el-color-picker>
+          </el-form-item>
+          <el-collapse v-model="activeNames">
+            <title-option @change="changeTitleOption"></title-option>
 
-              <title-option @change="changeTitleOption"></title-option> 
+            <legend-option @change="changeLegendOption"></legend-option>
 
-              <legend-option @change="changeLegendOption"></legend-option>
- 
-              <grid-option @change="changeGridOption"></grid-option> 
- 
-              <tooltip-option @change="changeTooltipOption"></tooltip-option>
-              
-              <el-collapse-item title="数据项配置" name="7">
-                <el-button type="primary" size="mini" @click="addSeriesItem">添加数据项</el-button>
-                <!-- <div class="series_data_item" v-for="(item, index) in series" :key="index">
+            <grid-option @change="changeGridOption"></grid-option>
+
+            <tooltip-option @change="changeTooltipOption"></tooltip-option>
+
+            <el-collapse-item title="数据项配置" name="7">
+              <el-button type="primary" size="mini" @click="addSeriesItem">添加数据项</el-button>
+              <!-- <div class="series_data_item" v-for="(item, index) in series" :key="index">
                   <el-form-item label="数据"> 
                     <div>{{item.data}}</div>
                     <el-button-group>
@@ -67,29 +65,25 @@
                   <el-form-item label="区域颜色"> 
                     <el-color-picker v-model="item.areaStyle.color"></el-color-picker>
                   </el-form-item>
-                </div> -->
-              </el-collapse-item>
-            </el-collapse>
-            
-          </el-form>
-        </div>
-      </el-col>
-      <el-col :xl="14" :lg="14" :md="14">
-        <div class="chart_wrap">
-          <div id="chart3" style="width: 100%; height: 100%"></div>
-        </div>
-      </el-col>
-      <el-col :xl="5" :lg="5" :md="5">
-        <div class="option_wrap"> 
-          <code> 
-            <vue-json-pretty 
-              :data="chartOptions" >
-            </vue-json-pretty>
-          </code>
-        </div>
-      </el-col>
-    </el-row>
-  </el-main>
+              </div>-->
+            </el-collapse-item>
+          </el-collapse>
+        </el-form>
+      </div>
+    </el-col>
+    <el-col :xl="14" :lg="14" :md="14">
+      <div class="chart_wrap">
+        <div id="chart3" style="width: 100%; height: 100%"></div>
+      </div>
+    </el-col>
+    <el-col :xl="5" :lg="5" :md="5">
+      <div class="option_wrap">
+        <code>
+          <vue-json-pretty :data="chartOptions"></vue-json-pretty>
+        </code>
+      </div>
+    </el-col>
+  </el-row>
 </template>
 <script>
 import index from "./index";

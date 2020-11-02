@@ -1,11 +1,11 @@
 <template>
   <el-container>
-    <el-header class="header">
+    <el-header class="header" style="height: 40px" ref="header">
       <div class="title">eCharts可视化图表编辑器</div>
     </el-header>
     <el-container> 
       <el-aside width="auto">
-        <ul class="menu"> 
+        <ul class="menu" :style="{'height': editorMainHeight + 'px'}"> 
           <router-link tag="li" class="menu_item" to="/chart/line" active-class="active"> 
             <chart-menu-icon :icon-index="1"></chart-menu-icon>
           </router-link>
@@ -17,7 +17,7 @@
           </router-link>
         </ul>
       </el-aside>
-      <el-main style="padding: 0">
+      <el-main class="editor_main" :style="{'height': editorMainHeight + 'px'}">
         <router-view></router-view>
       </el-main>
     </el-container>
@@ -31,8 +31,11 @@ export default {
   },
   data() {
     return {
-      
+      editorMainHeight: 0
     }
+  }, 
+  mounted() { 
+    this.editorMainHeight = window.innerHeight - this.$refs.header.$el.offsetHeight
   }
 }
 </script>

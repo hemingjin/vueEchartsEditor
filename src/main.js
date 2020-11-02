@@ -10,8 +10,7 @@ import VueJsonPretty from 'vue-json-pretty'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
-Vue.component('VueJsonPretty', VueJsonPretty)
-console.log(122)
+Vue.component('VueJsonPretty', VueJsonPretty) 
 new Vue({
   router,
   store,

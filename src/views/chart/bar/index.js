@@ -90,8 +90,12 @@ export default {
   },
   methods: {
     renderChart(options) {
-      this.chart = echarts.init(document.getElementById('chart2'));
+      this.chart = echarts.init(document.getElementById('chart2'), {
+        width: '100%',
+        height: '100%'
+      });
       this.chart.setOption(options)
+      this.chart.resize(); 
     },
     changeTitleOption(data) {
       this.title = data
